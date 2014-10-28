@@ -63,20 +63,6 @@ def product_detail(request, pk):
     return {'product': get_object_or_404(models.Product, pk=pk)}
 
 @render_to('products/form.html')
-def add_product(request):
-
-    if request.method == 'POST':
-        form = forms.ProductForm(request.POST)
-
-        if form.is_valid():
-            instance = form.save()
-            return redirect(instance.get_absolute_url())
-    else:
-        form = forms.ProductForm()
-
-    return {'form': form}
-
-@render_to('products/form.html')
 def change_product(request, pk=None):
 
     instance = get_object_or_404(models.Product, pk=pk) if pk else None
